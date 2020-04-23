@@ -4,10 +4,26 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { Provider } from "react-redux"
+import { createStore, applyMiddleware, combineReducers } from "redux"
+import { ThunkAction } from "redux-thunk"
+import reducerA from "./reducer/reducerA"
+import reducerB from "./reducer/reducerB"
+
+
+const reducer = combineReducers({
+  rA: reducerA,
+  rB: reducerB
+})
+
+const store = createStore(reducer)
+
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider
+    store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
